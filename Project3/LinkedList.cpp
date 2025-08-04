@@ -55,7 +55,7 @@ Person* LinkedList::search(int id) {
 Person* LinkedList::search(string firstName, string lastName) {
     string fullName = firstName + " " + lastName;
     ListNode<Person*>* current = head;
-    while (current != nullptr) {
+    while (current) {
         if (current->data->getName() == fullName) {
             return current->data;
         }
