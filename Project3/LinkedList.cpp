@@ -75,7 +75,7 @@ void LinkedList::remove(int id) {
     ListNode<Person*>* current = head;
     ListNode<Person*>* prev = nullptr;
 
-    while (current != nullptr && current->data->getID() != id) {
+    while (current && current->data->getID() != id) {
         prev = current;
         current = current->next;
     }
