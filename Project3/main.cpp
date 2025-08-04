@@ -24,102 +24,29 @@ void showMenu() {
 int main() {
     LinkedList list;
     int choice;
-
     do {
         showMenu();
         cin >> choice;
         cin.ignore();
+        string filename;
+        int id;
             switch (choice) {
-                case 1:
-                    list.addStudentFromConsole();
-                    break;
-
-                case 2: {
-                    string filename;
-                    cout << "Enter .txt filename: ";
-                    cin >> filename;
-                
-                    break;
-                }
-
-                case 3: {
-                    string filename;
-                    cout << "Enter .csv filename: ";
-                    cin >> filename;
-                    
-                    break;
-                }
-
-                case 4:
-                
-                    break;
-
-                case 5: {
-                    string filename;
-                    cout << "Enter faculty .txt filename: ";
-                    cin >> filename;
-                    
-                    break;
-                }
-
-                case 6: {
-                  
-                    cout << "Enter faculty .csv filename: ";
-                    cin >> filename;
-                  
-                    break;
-                }
-
-                case 7:
-                    list.display();
-                    break;
-
-                case 8: {
-                    int id;
-                    cout << "Enter ID to search: ";
-                    cin >> id;
-                    Person* p = list.search(id);
-                    if (p) p->display();
-                    else cout << "Not found.\n";
-                    break;
-                }
-
-                case 9: {
-                    int id;
-                    cout << "Enter ID to update: ";
-                    cin >> id;
-                    list.update(id);
-                    break;
-                }
-
-                case 10: {
-                    int id;
-                    cout << "Enter ID to delete: ";
-                    cin >> id;
-                    list.remove(id);
-                    break;
-                }
-
-                case 11:
-                    list.sortByID();
-                    break;
-
-                case 12:
-                    list.sortByName();
-                    break;
-
-                case 13:
-                    list.sortByGPA();
-                    break;
-
-                case 14:
-                    cout << "Exiting program.\n";
-                    break;
-
-                default:
-                    cout << "Invalid choice. Try again.\n";
+                case 1: list.addStudentFromConsole(); break;
+                case 2: cout << "Enter .txt filename: "; cin >> filename; list.addStudentsFromTxtFile(filename); break;
+                case 3: cout << "Enter .csv filename: "; cin >> filename; list.addStudentsFromCSVFile(filename); break;
+                case 4: list.addFacultyFromConsole(); break;
+                case 5: cout << "Enter faculty .txt filename: "; cin >> filename; list.addFacultyFromTxtFile(filename); break;
+                case 6: cout << "Enter faculty .csv filename: "; cin >> filename; list.addFacultyFromCSVFile(filename); break;
+                case 7: list.display(); break;
+                case 8: cout << "Enter ID to search: "; cin >> id; if(auto p = list.search(id)) p->display(); else cout<<"Not found.\n"; break;
+                case 9: cout << "Enter ID to update: "; cin >> id; list.update(id); break;
+                case 10: cout << "Enter ID to delete: "; cin >> id; list.remove(id); break;
+                case 11: list.sortByID(); break;
+                case 12: list.sortByName(); break;
+                case 13: list.sortByGPA(); break;
+                case 14: cout << "Exiting program.\n"; break;
+                default: cout << "Invalid choice. Try again.\n";
             }
     } while (choice != 14);
-
     return 0;
 }
