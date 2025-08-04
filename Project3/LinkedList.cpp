@@ -109,19 +109,17 @@ void LinkedList::addStudentFromConsole() {
 }
 
 void LinkedList::addStudentsFromTxtFile(const string& filename) {
-    ifstream infile(filename);
-    if (!infile.is_open()) {
-        cerr << "Failed to open file: " << filename << endl;
+    ifstream file(filename);
+    if (!file) {
+        cout<<"file error.\n";
         return;
     }
     int id;
     string name, major;
     double gpa;
-    while (infile >> id >> name >> major >> gpa) {
-        Student* student = new Student(name, id, major, gpa);
-        insert(student);
+    while (file >> id >> name >> major >> gpa) {
+        insert(new Student(name, id, major, gpa));
     }
-    infile.close();
 }
 
 void LinkedList::addStudentsFromCSVFile(const string& filename) {
