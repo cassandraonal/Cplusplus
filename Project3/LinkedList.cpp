@@ -56,9 +56,7 @@ Person* LinkedList::search(string firstName, string lastName) {
     string fullName = firstName + " " + lastName;
     ListNode<Person*>* current = head;
     while (current) {
-        if (current->data->getName() == fullName) {
-            return current->data;
-        }
+        if (current->data->getName() == fullName) return current->data;
         current = current->next;
     }
     return nullptr;
@@ -67,12 +65,10 @@ Person* LinkedList::search(string firstName, string lastName) {
 void LinkedList::update(int id) {
     Person* p = search(id);
     if (!p) {
-        cout << "No person found with ID: " << id << endl;
+        cout << "No record found.\n";
         return;
     }
-
-    cout << "Updating record for ID: " << id << endl;
-
+    p->updateDetails();
 }
 
 void LinkedList::remove(int id) {
