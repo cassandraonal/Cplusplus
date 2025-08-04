@@ -28,12 +28,9 @@ void Student::display(){
 }
 
 void Student::updateDetails() {
-    string major;
-    double gpa;
+    cin.ignore();
     cout << "Enter major: ";
     getline(cin, major);
     cout << "Enter GPA: ";
     cin >> gpa;
-    setMajor(major);
-    setGPA(gpa);
 }
