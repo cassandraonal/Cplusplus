@@ -15,4 +15,8 @@ int Person::getID() const{
 
 void Person:: setName(string n){
     name = n;
+}
+
+void Person::setID(int i){
+    id = i;
 };
