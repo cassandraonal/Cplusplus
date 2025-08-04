@@ -123,13 +123,13 @@ void LinkedList::addStudentsFromTxtFile(const string& filename) {
 }
 
 void LinkedList::addStudentsFromCSVFile(const string& filename) {
-    ifstream infile(filename);
-    if (!infile.is_open()) {
-        cerr << "Failed to open file: " << filename << endl;
+    ifstream file(filename);
+    if (!file) {
+        cout<< "File error.\n";
         return;
     }
     string line;
-    while (getline(infile, line)) {
+    while (getline(file, line)) {
         //split CSV lines by commas
         stringstream ss(line);
         string idStr, name, major, gpaStr;
@@ -138,26 +138,68 @@ void LinkedList::addStudentsFromCSVFile(const string& filename) {
         getline(ss, name, ',');
         getline(ss, major, ',');
         getline(ss, gpaStr, ',');
-
-        int id = stoi(idStr);
-        double gpa = stod(gpaStr);
-
-        Student* student = new Student(name, id, major, gpa);
-        insert(student);
+        insert(new Student(name, stoi(idStr), major, stod(gpaStr)));
     }
-    infile.close();
+}
+void LinkedList::addFacultyFromConsole(){
+    int id, salary;
+    string name, dept, title;
+    cout<<"Enter Faculty ID: ";
+    cin>>id;
+    cin.ignore();
+    cout<<"Enter name: ";
+    getline(cin, name);
+    cout<<"Enter department: ";
+    getline(cin, dept);
+    cout<<"Enter title: ";
+    getline(cin, title);
+    cout<<"Enter salary: ";
+    cin>>salary;
+    insert(new Faculty(name, id, dept, title, salary));
+}
+
+void LinkedList::addFacultyFromTxtFile(const string& filename){
+    ifstream file(filename);
+    if(!file){
+        cout<<"File error.\n";
+        return;
+    }
+    int id, salary;
+    string name, dept, title;
+    while(file>>id>>name>>dept>>title>>salary){
+        insert(new Faculty(name, id, dept, title, salary));
+    }
+}
+
+void LinkedList::addFacultyFromCSVFile(const string& filename){
+    ifstream file(filename);
+    if(!file){
+        cout<<"File error.\n";
+        return;
+    }
+    string line;
+    while(getline(file, line)){
+        stringstream ss(line);
+        string idStr, name, dept, title, salaryStr;
+        getline(ss, idStr, ',');
+        getline(ss, name, ',');
+        getline(ss, dept, ',');
+        getline(ss, title, ',');
+        getline(ss, salaryStr, ',');
+        insert(new Faculty(name, stoi(idStr), dept, title, stoi(salaryStr)));
+    }
 }
 // Step 8: Sort by ID
 void LinkedList::sortByID() {
-    vector<Person*> people;
+    vector<Person*> v;
     ListNode<Person*>* current = head;
 
     while(current){
-        people.push_back(current->data);
+        v.push_back(current->data);
         current = current->next;
     }
 
-    sort(people.begin(), people.end(), [](Person* a, Person* b) {
+    sort(v.begin(), v.end(), [](Person* a, Person* b) {
         return a->getID() < b->getID();
     });
 
