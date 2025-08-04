@@ -13,7 +13,7 @@ LinkedList::LinkedList() : head(nullptr) {}
 LinkedList::~LinkedList() {
     // starts from first node in the list
     ListNode<Person*>* current = head;
-    while (current != nullptr) {
+    while (current) {
         ListNode<Person*>* temp = current; //looops through very node until the end is reached
         current = current->next;//stores current node in a temp value
         delete temp->data;//avoid memory leak - moving to the next node before delting the next one
