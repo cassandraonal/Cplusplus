@@ -202,76 +202,37 @@ void LinkedList::sortByID() {
     sort(v.begin(), v.end(), [](Person* a, Person* b) {
         return a->getID() < b->getID();
     });
-
-    // delete all old nodes, but not the Person objects
-    current = head;
-    while(current){
-        ListNode<Person*>* temp = current;
-        current = current->next;
-        delete temp;
-    }
-
     head = nullptr;
-    for(Person* p : people){
-        ListNode<Person*>* newNode = new ListNode<Person*>(p);
-        if(!head)
-            head = newNode;
-        else{
-            ListNode<Person*>* tail = head;
-            while(tail->next) tail = tail->next;
-            tail->next = newNode;
-        }
-    }
-
-    cout << "List sorted by ID.\n";
-
-    // Show the sorted list immediately
-    display();
+    for(auto p: v) insert(p);
 }
-
 // Step 8: Sort by Name
 void LinkedList::sortByName() {
-    vector<Person*> people;
+    vector<Person*> v;
     ListNode<Person*>* current = head;
 
     while (current) {
-        people.push_back(current->data);
+        v.push_back(current->data);
         current = current->next;
     }
 
-    sort(people.begin(), people.end(), [](Person* a, Person* b) {
+    sort(v.begin(), v.end(), [](Person* a, Person* b) {
         return a->getName() < b->getName();
     });
-
-    // Delete old list nodes (not Person* objects)
-    current = head;
-    while (current) {
-        ListNode<Person*>* temp = current;
-        current = current->next;
-        delete temp;
-    }
-
     head = nullptr;
-    for (Person* p : people) {
-        ListNode<Person*>* newNode = new ListNode<Person*>(p);
-        if (!head)
-            head = newNode;
-        else {
-            ListNode<Person*>* tail = head;
-            while (tail->next)
-                tail = tail->next;
-            tail->next = newNode;
-        }
-    }
-
-    cout << "List sorted by name.\n";
-
-    // Immediately display the sorted list
-    display();
+    for(auto p : v) insert(p);
 }
-
 // Step 8: Sort by GPA (Students only)
 void LinkedList::sortByGPA() {
-    vector<Student*> students;
+    vector<Student*> v;
     ListNode<Person*>* current = head;
+    while(current){
+        Student* s = dynamic_cast<Student*>(current->data);
+        if(s) v.push_back(s);
+        current = current->next;
+    }
+    sort(v.begin(), v.end(), [](Student* a, Student* b){
+        return a->getGPA() > b->getGPA();
+    });
+    for(auto s : v) s->display();
+}
  
