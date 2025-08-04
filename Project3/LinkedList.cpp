@@ -207,7 +207,6 @@ void LinkedList::addFacultyFromCSVFile(const string& filename){
 void LinkedList::sortByID() {
     vector<Person*> v;
     ListNode<Person*>* current = head;
-
     while(current){
         v.push_back(current->data);
         current = current->next;
@@ -216,9 +215,29 @@ void LinkedList::sortByID() {
     sort(v.begin(), v.end(), [](Person* a, Person* b) {
         return a->getID() < b->getID();
     });
+    current = head;
+    while (current) {
+        ListNode<Person*>* temp = current;
+        current = current->next;
+        delete temp;
+    }
+
     head = nullptr;
-    for(auto p: v) insert(p);
+    for (auto p : v) {
+        ListNode<Person*>* newNode = new ListNode<Person*>(p);
+        if (!head)
+            head = newNode;
+        else {
+            ListNode<Person*>* tail = head;
+            while (tail->next) tail = tail->next;
+            tail->next = newNode;
+        }
+    }
+
+    cout << "List sorted by ID:\n";
+    display();
 }
+
 // Step 8: Sort by Name
 void LinkedList::sortByName() {
     vector<Person*> v;
@@ -232,8 +251,27 @@ void LinkedList::sortByName() {
     sort(v.begin(), v.end(), [](Person* a, Person* b) {
         return a->getName() < b->getName();
     });
+current = head;
+    while (current) {
+        ListNode<Person*>* temp = current;
+        current = current->next;
+        delete temp;
+    }
+
     head = nullptr;
-    for(auto p : v) insert(p);
+    for (auto p : v) {
+        ListNode<Person*>* newNode = new ListNode<Person*>(p);
+        if (!head)
+            head = newNode;
+        else {
+            ListNode<Person*>* tail = head;
+            while (tail->next) tail = tail->next;
+            tail->next = newNode;
+        }
+    }
+
+    cout << "List sorted by Name:\n";
+    display();
 }
 // Step 8: Sort by GPA (Students only)
 void LinkedList::sortByGPA() {
