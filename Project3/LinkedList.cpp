@@ -45,10 +45,8 @@ void LinkedList::display() {
 
 Person* LinkedList::search(int id) {
     ListNode<Person*>* current = head;
-    while (current != nullptr) {
-        if (current->data->getID() == id) {
-            return current->data;
-        }
+    while (current) {
+        if (current->data->getID() == id) return current->data;
         current = current->next;
     }
     return nullptr;
