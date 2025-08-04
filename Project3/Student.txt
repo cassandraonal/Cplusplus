@@ -1,1 +1,4 @@
 1234 Joon smith Math 3.4
+1001 Alice Johnson CS 3.8
+1002 Bob Smith Math 3.5
+1003 Clara Williams Physics 3.9

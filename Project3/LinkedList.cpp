@@ -109,23 +109,34 @@ void LinkedList::addStudentFromConsole() {
 }
 
 void LinkedList::addStudentsFromTxtFile(const string& filename) {
-    ifstream infile(filename);
+      ifstream infile(filename);
     if (!infile.is_open()) {
         cerr << "Failed to open file: " << filename << endl;
         return;
     }
-    int id;
-    string name, major;
-    double gpa;
-    while (infile >> id) {
-        infile.ignore(); 
-        getline(infile, name, ' '); 
-        infile >> major >> gpa;
+
+    string line;
+    while (getline(infile, line)) {
+        stringstream ss(line);
+        int id;
+        ss >> id;
+        vector<string> tokens;
+        string word;
+        while (ss >> word) {
+            tokens.push_back(word);
+        }
+        if (tokens.size() < 3) continue; 
+        string major = tokens[tokens.size() - 2];
+        double gpa = stod(tokens[tokens.size() - 1]);
+        string name;
+        for (size_t i = 0; i < tokens.size() - 2; ++i) {
+            if (i > 0) name += " ";
+            name += tokens[i];
+        }
         insert(new Student(name, id, major, gpa));
     }
     infile.close();
 }
-
 void LinkedList::addStudentsFromCSVFile(const string& filename) {
     ifstream infile(filename);
     if (!infile.is_open()) {
@@ -169,21 +180,42 @@ void LinkedList::addFacultyFromConsole(){
 
 void LinkedList::addFacultyFromTxtFile(const string& filename){
     ifstream infile(filename);
-    if(!infile.is_open()){
-        cerr<<"Failed to open file: "<<filename<<endl;
+    if (!infile.is_open()) {
+        cerr << "Failed to open file: " << filename << endl;
         return;
     }
-    int id, salary;
-    string name, department, title;
-    while(infile>>id){
-        infile.ignore();
-        getline(infile, name, ' ');
-        infile>>department>>title>>salary;
+
+    string line;
+    while (getline(infile, line)) {
+        stringstream ss(line);
+        int id;
+        ss >> id;
+
+        vector<string> tokens;
+        string word;
+        while (ss >> word) {
+            tokens.push_back(word);
+        }
+
+        if (tokens.size() < 4) continue; // Need at least name, dept, title, salary
+
+        // Last three tokens are department, title, salary
+        string department = tokens[tokens.size() - 3];
+        string title = tokens[tokens.size() - 2];
+        int salary = stoi(tokens[tokens.size() - 1]);
+
+        // Everything before that is part of the name
+        string name;
+        for (size_t i = 0; i < tokens.size() - 3; ++i) {
+            if (i > 0) name += " ";
+            name += tokens[i];
+        }
+
         insert(new Faculty(name, id, department, title, salary));
     }
+
     infile.close();
 }
-
 void LinkedList::addFacultyFromCSVFile(const string& filename){
     ifstream infile(filename);
     if (!infile.is_open()) {
