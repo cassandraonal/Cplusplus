@@ -74,27 +74,21 @@ void LinkedList::update(int id) {
 void LinkedList::remove(int id) {
     ListNode<Person*>* current = head;
     ListNode<Person*>* prev = nullptr;
-
     while (current && current->data->getID() != id) {
         prev = current;
         current = current->next;
     }
-
-    if (current == nullptr) {
-        cout << "Person with ID " << id << " not found.\n";
+    if (!current) {
+        cout <<"Not found.\n";
         return;
     }
-
-    if (prev == nullptr) {
+    if (!prev) {
         head = current->next;
     } else {
         prev->next = current->next;
     }
-
     delete current->data;
     delete current;
-
-    cout << "Person with ID " << id << " has been removed.\n";
 }
 
 void LinkedList::addStudentFromConsole() {
@@ -111,9 +105,7 @@ void LinkedList::addStudentFromConsole() {
     getline(cin, major);
     cout << "Enter GPA: ";
     cin >> gpa;
-
-    Student* student = new Student(name, id, major, gpa);
-    insert(student);
+    insert(new Student(name, id, major, gpa));
 }
 
 void LinkedList::addStudentsFromTxtFile(const string& filename) {
