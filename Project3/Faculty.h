@@ -22,8 +22,7 @@ public:
     void setSalary(int salary);
 
     void display() override; // Overrides to print faculty info (e.g.,"Faculty - ID: 201, Name: Dr. Smith, Dept: Math, Title: Professor, Salary: $80000").
-
-    void updateDetails();
+    void updateDetails() override;
 
 };
 #endif
