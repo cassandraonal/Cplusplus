@@ -1,0 +1,44 @@
+ET580 Project Documentation
+
+Instructions:
+A. Write the group number and full names of all active group members.
+B. Write the name of each file and who contributed.
+C. State ALL known problems or incomplete features of the project.
+D. In each .cpp file write a single line comment next to each function stating who contributed.
+-------------------------------------------------------------------------------------------
+
+A. Group Members:
+
+
+B. Files : Contributors
+1. Person.h : Cassandra Sbordoni
+2. Person.cpp : Cassandra Sbordoni 
+3. Student.h : Cassandra Sbordoni
+4. Student.cpp : Cassandra Sbordoni 
+5. Faculty.h : Cassandra Sbordoni
+6. Faculty.cpp : Cassandra Sbordoni
+7. 
+8. 
+9. 
+10. 
+11. 
+12. 
+13.
+14. 
+15. 
+16. 
+17. 
+18. 
+19. 
+
+error fixing:
+Cassandra Sbordoni 
+
+LinkedList.h: addFacultyFromConsole(), addFacultyFromTxtFile(), addFacultyFromCSVFile()
+sortByID(), sortByName(), sortByGPA()
+
+Cassandra added txt files for testing also
+
+C. Known Problems or Incomplete Code
+
+
