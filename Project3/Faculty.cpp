@@ -34,9 +34,6 @@ void Faculty::display(){
 }
 
 void Faculty::updateDetails() {
-    string department, title;
-    int salary;
-
     cin.ignore(); //flush newline (added by Cassandra S.)
     cout << "Enter department: ";
     getline(cin, department);
@@ -44,7 +41,4 @@ void Faculty::updateDetails() {
     getline(cin, title);
     cout << "Enter salary: ";
     cin >> salary;
-    setDepartment(department);
-    setTitle(title);
-    setSalary(salary);
 }
