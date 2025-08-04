@@ -23,14 +23,12 @@ LinkedList::~LinkedList() {
 
 void LinkedList::insert(Person* data) { //points to base class for student or faculty
     ListNode<Person*>* newNode = new ListNode<Person*>(data); //dynmically create new node that stores the data from the person
-    if (head == nullptr) { //if the pointer is empty the node is set at the start
+    if (!head) { 
         head = newNode;
     } else {
         // else the go through the list 
         ListNode<Person*>* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
-        }
+        while (current->next) current = current->next;
         current->next = newNode;// sets next pointer to the new node
     }
 }
