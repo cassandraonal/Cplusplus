@@ -17,12 +17,12 @@ B. Files : Contributors
 4. Student.cpp : Cassandra Sbordoni 
 5. Faculty.h : Cassandra Sbordoni
 6. Faculty.cpp : Cassandra Sbordoni
-7. 
-8. 
-9. 
-10. 
-11. 
-12. 
+7. Makefile : Cassandra Sbordoni
+8. Linkedist.cpp : Cassandra Sbordoni
+9. LinkedList.h : Cassandra Sbordoni
+10. ListNode.h : Cassandra Sbordoni
+11. ListNode.cpp : Cassandra Sbordoni
+12. main.cpp : Cassandra Sbordoni
 13.
 14. 
 15. 
