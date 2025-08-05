@@ -267,7 +267,7 @@ void LinkedList::sortByName() {
         swapped = false;
         ListNode<Person*>* current = head;
         while(current->next){
-            string name1 = toLower(current->data->getName());
+            string name1 = toLower(current->data->getName()); //used to get in alpha order regardless lowercase or uppercase
             string name2 = toLower(current->next->data->getName());
 
             if(name1 > name2){
