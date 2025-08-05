@@ -237,86 +237,64 @@ void LinkedList::addFacultyFromCSVFile(const string& filename){
 }
 // Step 8: Sort by ID
 void LinkedList::sortByID() {
-    vector<Person*> v;
-    ListNode<Person*>* current = head;
-    while(current){
-        v.push_back(current->data);
-        current = current->next;
-    }
-
-    sort(v.begin(), v.end(), [](Person* a, Person* b) {
-        return a->getID() < b->getID();
-    });
-    current = head;
-    while (current) {
-        ListNode<Person*>* temp = current;
-        current = current->next;
-        delete temp;
-    }
-
-    head = nullptr;
-    for (auto p : v) {
-        ListNode<Person*>* newNode = new ListNode<Person*>(p);
-        if (!head)
-            head = newNode;
-        else {
-            ListNode<Person*>* tail = head;
-            while (tail->next) tail = tail->next;
-            tail->next = newNode;
+    if(! head || !head->next) return;
+    bool swapped;
+    do{
+        swapped = false;
+        ListNode<Person*>* current = head;
+        while(current->next){
+            if(current->data->getID()>current->next->data->getID()){
+                swap(current->data, current->next->data);
+                swapped = true;
+            }
+            current = current->next;
         }
-    }
-
-    cout << "List sorted by ID:\n";
+    }while(swapped);
+    cout<<"List sorted by ID:\n";
     display();
 }
 
 // Step 8: Sort by Name
 void LinkedList::sortByName() {
-    vector<Person*> v;
-    ListNode<Person*>* current = head;
-
-    while (current) {
-        v.push_back(current->data);
-        current = current->next;
-    }
-
-    sort(v.begin(), v.end(), [](Person* a, Person* b) {
-        return a->getName() < b->getName();
-    });
-current = head;
-    while (current) {
-        ListNode<Person*>* temp = current;
-        current = current->next;
-        delete temp;
-    }
-
-    head = nullptr;
-    for (auto p : v) {
-        ListNode<Person*>* newNode = new ListNode<Person*>(p);
-        if (!head)
-            head = newNode;
-        else {
-            ListNode<Person*>* tail = head;
-            while (tail->next) tail = tail->next;
-            tail->next = newNode;
+    if(!head || !head->next) return;
+    bool swapped;
+    do{
+        swapped = false;
+        ListNode<Person*>* current = head;
+        while(current->next){
+            if(current->data->getName()>current->next->data->getName()){
+                swap(current->data, current->next->data);
+                swapped = true;
+            }
+            current = current->next;
         }
-    }
-
-    cout << "List sorted by Name:\n";
+    }while(swapped);
+    cout<<"List sorted by Name:\n";
     display();
 }
+
 // Step 8: Sort by GPA (Students only)
-void LinkedList::sortByGPA() {
-    vector<Student*> v;
-    ListNode<Person*>* current = head;
-    while(current){
-        Student* s = dynamic_cast<Student*>(current->data);
-        if(s) v.push_back(s);
-        current = current->next;
-    }
-    sort(v.begin(), v.end(), [](Student* a, Student* b){
-        return a->getGPA() > b->getGPA();
-    });
-    for(auto s : v) s->display();
+void LinkedList::sortByGPA() { 
+   if(!head || !head->next) return;
+   bool swapped;
+   do{
+        swapped = false;
+        ListNode<Person*>* current = head;
+        while(current->next){
+            Student* s1 = dynamic_cast<Student*>(current->data);
+            Student* s2 = dynamic_cast<Student*>(current->next->data);
+            if(s1 && s2 && s1->getGPA() < s2->getGPA()){
+                swap(current->data, current->next->data);
+                swapped = true;
+            }
+            current = current->next;
+        }
+   }while(swapped);
+   cout<<"Students sorted by GPA:\n";
+   ListNode<Person*>* current = head;
+   while(current){
+    Student* s = dynamic_cast<Student*>(current->data);
+    if(s) s->display();
+    current = current->next;
+   }
 }
- 
