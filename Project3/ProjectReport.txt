@@ -23,7 +23,7 @@ B. Files : Contributors
 10. ListNode.h : Cassandra Sbordoni
 11. ListNode.cpp : Cassandra Sbordoni
 12. main.cpp : Cassandra Sbordoni
-13.
+13. Joseph Bernabe : steps 7-9 
 14. 
 15. 
 16. 
@@ -32,13 +32,20 @@ B. Files : Contributors
 19. 
 
 error fixing:
-Cassandra Sbordoni 
+Cassandra Sbordoni
+(that's why my name is next to every file, I did work on all of them and fix errors that I found.)
 
+Joseph Bernabe has worked on steps 7-9. I did have to do the whole step 7 though because it was not there when I checked. 
+Although he may have worked on it and forgot to push that part, I'm not sure. 
+I also had to go through and edit some portions of the sortByID() and sortByName() to make it run correctly, but most of the code he did was correct.
+I had to work to get menu choices 3. Add Students from CSV File,5. Add Faculty from Text File, 6. Add Faculty from CSV File, 11. Sort by ID, and
+12. Sort by Name to properly display the expected output.
 LinkedList.h: addFacultyFromConsole(), addFacultyFromTxtFile(), addFacultyFromCSVFile()
 sortByID(), sortByName(), sortByGPA()
 
 Cassandra added txt files for testing also
 
 C. Known Problems or Incomplete Code
+
 
 

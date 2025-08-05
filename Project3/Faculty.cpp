@@ -34,7 +34,7 @@ void Faculty::display(){
 }
 
 void Faculty::updateDetails() {
-    cin.ignore(); //flush newline (added by Cassandra S.)
+    cin.ignore(); 
     cout << "Enter department: ";
     getline(cin, department);
     cout << "Enter title: ";
