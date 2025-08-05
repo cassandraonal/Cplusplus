@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <algorithm>
+#include <algorithm> //needed for tranform
 using namespace std;
 
 LinkedList::LinkedList() : head(nullptr) {}
@@ -253,7 +253,11 @@ void LinkedList::sortByID() {
     cout<<"List sorted by ID:\n";
     display();
 }
-
+string toLower(const string& str){
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
 // Step 8: Sort by Name
 void LinkedList::sortByName() {
     if(!head || !head->next) return;
