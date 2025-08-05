@@ -253,10 +253,11 @@ void LinkedList::sortByID() {
     cout<<"List sorted by ID:\n";
     display();
 }
-string toLower(const string& str){
-    string result = str;
-    transform(result.begin(), result.end(), result.begin(), ::tolower);
-    return result;
+string toLower(const string& s){
+   string lower;
+   for(char c : s) lower += tolower(c);
+   return lower;
+   
 }
 // Step 8: Sort by Name
 void LinkedList::sortByName() {
@@ -266,7 +267,10 @@ void LinkedList::sortByName() {
         swapped = false;
         ListNode<Person*>* current = head;
         while(current->next){
-            if(current->data->getName()>current->next->data->getName()){
+            string name1 = toLower(current->data->getName());
+            string name2 = toLower(current->next->data->getName());
+
+            if(name1 > name2){
                 swap(current->data, current->next->data);
                 swapped = true;
             }
