@@ -17,7 +17,7 @@ void Student::setMajor(string major){
     this->major = major;
 }
 void Student::setGPA(double gpa){
-    this->gpa = gpa;
+    this->gpa = gpa; // makes sure the class's member variable is updated.
 }
 //display student info
 void Student::display(){
