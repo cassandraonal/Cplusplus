@@ -19,7 +19,7 @@ public:
     void setGPA(double gpa);
      // set name and id are done in the Person constructor
     void display() override; //override to print student info (e.g., "Student - ID: 101, Name: Jane, Major: Math, GPA: 3.8").
-    void updateDetails() override;
+    void updateDetails() override; // to input new values
 };
 
 #endif
