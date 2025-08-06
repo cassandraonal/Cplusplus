@@ -7,16 +7,13 @@ Person::~Person(){} //Virtual destructor Allows proper cleanup of derived class 
 string Person::getName() const{
     return name;
 }
-
 // Getter for id
 int Person::getID() const{
     return id;
 }
-
 void Person:: setName(string n){
     name = n;
 }
-
 void Person::setID(int i){
     id = i;
 };
