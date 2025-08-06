@@ -12,14 +12,14 @@ public:
     Person(string name, int id); //Parameterized constructor
     virtual void display() = 0; //Pure virtual function to show details (overridden by child classes).
     virtual ~Person(); // Virtual destructor to ensure proper cleanup of derived objects.
+    virtual void updateDetails() = 0; //dynamically update details
     
     string getName() const;
     int getID() const; // so i dont have to keep calling these in the other files.
-
     void setName(string n);
     void setID(int i);
     
-    virtual void updateDetails() = 0; //dynamically update details
+   
 
 };
 #endif
